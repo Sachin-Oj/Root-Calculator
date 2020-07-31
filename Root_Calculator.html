@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Cube Root using Javascript</h2>
+
+<p>Enter the number and click the button for generating cubic root.</p>
+
+<label>Enter the number</label>
+
+<br/>
+
+<input type='text' id="inputBox">
+
+<button onclick="generateCubeRoot()">Get Cube Root</button>
+<button onclick="resetButton()">Reset</button>
+
+<br/>
+<p id="output"></p>
+<script>
+function generateCubeRoot() {
+
+    // getting input value
+    let value =
+        parseInt(document.getElementById("inputBox").value);
+
+    // getting first iteration value
+    var iteration = value / 4;
+    nextIteration = iteration;
+
+    // function for iteration
+    const getRoots = (val, iter) =>
+        (2 * iter + val / (iter * iter)) / 3;
+
+    // performing iteration till if its greater than nearest floating value less than 1
+    do {
+        nextIteration = getRoots(value, iteration = nextIteration);
+    } while (Math.abs(iteration - nextIteration) > Number.EPSILON)
+
+    // output binding
+    document.getElementById("output").innerHTML = "Cube Root: "+nextIteration;
+}
+
+function resetButton() {
+   // resetting values
+    document.getElementById("inputBox").value = null;
+    document.getElementById("output").innerHTML = "";
+}
+</script>
+</body>
+</html>
+
+
+
+
+
